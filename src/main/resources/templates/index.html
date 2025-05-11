@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Personas</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            padding: 40px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f0f8ff;
+        }
+
+        .acciones a {
+            text-decoration: none;
+            padding: 6px 12px;
+            margin: 0 4px;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .editar {
+            background-color: #27ae60;
+        }
+
+        .eliminar {
+            background-color: #c0392b;
+        }
+
+        .nuevo-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 16px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nuevo-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Personas</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="persona : ${personas}">
+                <td th:text="${persona.id}"></td>
+                <td th:text="${persona.nombre}"></td>
+                <td th:text="${persona.apellido}"></td>
+                <td class="acciones">
+                    <a th:href="@{/personas/editar/{id}(id=${persona.id})}" class="editar">Editar</a>
+                    <a th:href="@{/personas/eliminar/{id}(id=${persona.id})}" class="eliminar">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: center;">
+        <a href="/personas/nuevo" class="nuevo-btn">+ Nueva Persona</a>
+    </div>
+</body>
+</html>
